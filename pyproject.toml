@@ -1,0 +1,26 @@
+[project]
+name = "controls"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Andrii Hlyvko",email = "andriihlyvko@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "numpy (>=2.3.4,<3.0.0)",
+    "matplotlib (>=3.10.7,<4.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+# packages = [{include = "controls", from = "src"}]
+
+[tool.poetry.scripts]
+on-off = "src.controls.on_off_controller:main"
+
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
