@@ -10,12 +10,12 @@ SIMULATION_DURATION_S: float = 120  # Extended for better visualization
 
 # Control parameters
 SETPOINT_M_3: float = 75  # Target water level
-DEADBAND_M_3: float = 0   # Hysteresis band to prevent chattering
+DEADBAND_M_3: float = 1   # Hysteresis band to prevent chattering
 
 # Realistic delay and noise parameters
-SENSOR_DELAY_S: float = 0.3  # ADC conversion + signal filtering delay
+SENSOR_DELAY_S: float = 0.7  # ADC conversion + signal filtering delay
 SENSOR_JITTER_S: float = 0.1  # Random variation in sensor timing (std dev)
-SENSOR_NOISE_M_3: float = 0.5  # Measurement noise (std dev)
+SENSOR_NOISE_M_3: float = 0.8  # Measurement noise (std dev)
 CONTROLLER_DELAY_S: float = 0.15  # RTOS task scheduling + computation delay
 CONTROLLER_JITTER_S: float = 0.05  # Variation in controller execution time
 ACTUATOR_DELAY_S: float = 0.25  # DAC output + physical actuator response
@@ -173,8 +173,8 @@ def run_simulation():
 def plot_results(time_array, water_levels, measured_levels, control_outputs, actuator_states, overflow_amounts):
     """Create nice plots of simulation results with delay visualization"""
 
-    # Set up the figure with subplots
-    fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(14, 12))
+    # Set up the figure with subplots (sharex=True allows synchronized zooming/panning)
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(14, 12), sharex=True)
     fig.suptitle('Water Reservoir On/Off Control Simulation with Realistic Delays',
                  fontsize=16, fontweight='bold')
 
